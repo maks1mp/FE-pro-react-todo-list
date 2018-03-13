@@ -7,7 +7,9 @@ export default class List extends Component {
         return (
             <ul>
                 {tasks.map(task =>
-                    <li>{task.name}</li>)}
+                    <li key={task.id}>
+                        {task.name}
+                    </li>)}
             </ul>
         );
     }
