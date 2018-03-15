@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Task from './Task';
 
 export default class List extends Component {
     render() {
@@ -7,9 +8,7 @@ export default class List extends Component {
         return (
             <ul>
                 {tasks.map(task =>
-                    <li key={task.id}>
-                        {task.name}
-                    </li>)}
+                <Task {...task} key={task.id}/>)}
             </ul>
         );
     }
