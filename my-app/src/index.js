@@ -20,14 +20,53 @@ class App extends React.Component {
         API.removePost(id)
             .then(isSuccess => {
                 if (isSuccess) {
-                const {posts} = this.state,
-                    removeElementIndex = posts.findIndex(p => p.id === id);
+                    const {posts} = this.state,
+                        removeElementIndex = posts.findIndex(p => p.id === id);
 
-                posts.splice(removeElementIndex, 1);
+                    posts.splice(removeElementIndex, 1);
 
-                this.setState({posts});
+                    this.setState({posts});
                 }
             })
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+
+        console.log(this.textareaHTML.value);
+        console.log(this.inputHTML.value);
+    }
+
+    renderForm() {
+        return (
+            <div>
+                <hr/>
+                <form onSubmit={this.handleSubmit}>
+                    <h2>ADD POST</h2>
+                    <p>
+                        <label>
+                            Header:
+                            <input
+                                ref={instance => this.inputHTML = instance}
+                                type="text"/>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            Body
+                            <textarea
+                                ref={instance => this.textareaHTML = instance}
+                                cols='30'
+                                rows='5'></textarea>
+                        </label>
+                    </p>
+                    <button type='submit'>
+                        ADD POST
+                    </button>
+                </form>
+                <hr/>
+            </div>
+        );
     }
 
     renderPosts() {
@@ -54,6 +93,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                {this.renderForm()}
                 <h1>POSTS</h1>
                 {this.renderPosts()}
             </div>
